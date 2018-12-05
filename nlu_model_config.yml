@@ -1,0 +1,27 @@
+pipeline:
+ # - name: "arbitary_confidence_retriever"
+  - name: "nlp_spacy"
+  - name: "tokenizer_spacy"
+  # - name: "intent_featurizer_spacy"
+ # - name: "tokenizer_whitespace"
+  - name: "word_vector_model"
+    model: "gn.bin"
+    # model: "model_expanded.bin"
+  - name: "tfidf_calculator"
+  - name: "intent_featurizer_embedding_tfidf"
+  # - name: "intent_featurizer_min_max_embedding"
+  # - name: "intent_featurizer_average_embedding"
+  # - name: "intent_featurizer_count_vectors"
+  #- name: "intent_classifier_sklearn"
+  # - name: "intent_classifier_fasttext"
+    # subwords: "model_sub_wiki.vec"
+  - name: "intent_classifier_tensorflow_embedding"
+    epochs: 350
+    droprate: 0.4
+    learning_rate: 0.0012 # 0.0002 for min-max
+    num_hidden_layers_a: 2
+    hidden_layer_size_a: [256, 128]
+ # - name: "arbitary_confidence_setter"
+ # - name: "ner_crf"
+ # - name: "ner_synonyms"
+ # - name: "sentiment_classifier_textblob"
